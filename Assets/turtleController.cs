@@ -8,6 +8,7 @@ public class turtleController : MonoBehaviour
 {
     /// <summary>
     /// Things to do:
+    /// lettuce regrows
     /// </summary>
 
     [SerializeField] private float movementSpeed = 1f;
@@ -38,7 +39,7 @@ public class turtleController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private float curSpinSpeed;
-    private bool inShell = false;
+    public bool inShell = false;
     private bool turning = false;
     private bool win = false;
 
@@ -66,6 +67,11 @@ public class turtleController : MonoBehaviour
         if (!win)
         {
             if (satiety >= 100) noMoreHungy = true;
+            else if(satiety <= 0)
+            {
+                failimage.SetActive(true);
+                win = true;
+            }
             burrowCooldown -= Time.deltaTime;
             if (burrowCooldown < 0f) text.text = "";
             move();
@@ -113,9 +119,12 @@ public class turtleController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Lettuce")
         {
-            chomping = true;
-            chompingTime = chompTimePerUnit * (collision.gameObject.GetComponent<lettuce>().lettuceDurability / 100);
-            lastChompedLettuce = collision.gameObject;
+            if(collision.gameObject.GetComponent<lettuce>().lettuceDurability > 0)
+            {
+                chomping = true;
+                chompingTime = chompTimePerUnit * (collision.gameObject.GetComponent<lettuce>().lettuceDurability / 100);
+                lastChompedLettuce = collision.gameObject;
+            }
         }
         else if(collision.gameObject.tag == "Burrow")
         {
@@ -152,11 +161,11 @@ public class turtleController : MonoBehaviour
         chompingTime -= Time.deltaTime;
         float tmpPerc = (chompingTime / chompTimePerUnit) * 100;
         lastChompedLettuce.GetComponent<lettuce>().lettuceDurability = tmpPerc;
+        lastChompedLettuce.GetComponent<lettuce>().currentlyCrunched = true;
         if (lastChompedLettuce.GetComponent<lettuce>().lettuceDurability < 0f)
         {
             chomping = false;
             alreadyChomped++;
-            Destroy(lastChompedLettuce.gameObject);
             satiety += satietyPerChomp;
         }
     }

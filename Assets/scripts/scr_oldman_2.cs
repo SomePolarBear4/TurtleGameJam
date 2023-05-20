@@ -17,6 +17,8 @@ public class scr_oldman_2 : MonoBehaviour
     public GameObject home;
     public GameObject oldman;
 
+    public List<lettuce> lettuces;
+
     public GameObject exclamation_mark;
     public GameObject question_mark;
     public GameObject music_mark;
@@ -24,7 +26,8 @@ public class scr_oldman_2 : MonoBehaviour
     bool just_lost_turtle = false;
     bool just_got_home = false;
     bool left_home = true;
-
+    
+    
     Vector2 oldman_position;
     Vector2 turtle_position;
     Vector2 home_position;
@@ -46,9 +49,11 @@ public class scr_oldman_2 : MonoBehaviour
     public GameObject second_walk_animation;
     bool walk_flip = true;
 
+    private turtleController tutel;
 
     void Start()
     {
+        tutel = turtle.GetComponent<turtleController>();
         oldman_position = Vector2.zero;
         turtle_position = Vector2.zero;
         home_position = Vector2.zero;
@@ -65,6 +70,8 @@ public class scr_oldman_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        turtle_in_shell = tutel.inShell;
         oldman_position = new Vector2(oldman.transform.position.x, oldman.transform.position.y);
         turtle_position = new Vector2(turtle.transform.position.x, turtle.transform.position.y);
         home_position = new Vector2(home.transform.position.x, home.transform.position.y);  
@@ -142,12 +149,26 @@ public class scr_oldman_2 : MonoBehaviour
             music_mark.SetActive(false);
         }
 
-
+        GameObject tmp = checkLettuces();
         if (can_see_turtle == true)
         {
             target = turtle;
             destinationSetter.target = turtle.transform;
+            tmp.GetComponent<lettuce>().currentlyCrunched = false;
             Debug.Log("trying to get turtle");
+        }
+        else if(tmp != null )
+        {
+            if(Vector2.Distance(tmp.transform.position, oldman_position) < hearing_range)
+            {
+                target = tmp;
+                destinationSetter.target = tmp.transform;
+                Debug.Log("trying to get to crunchered lettuce uwu");
+            }
+            else
+            {
+                tmp.GetComponent<lettuce>().currentlyCrunched = false;
+            }
         }
         else
         {
@@ -155,6 +176,7 @@ public class scr_oldman_2 : MonoBehaviour
             destinationSetter.target = home.transform;
             Debug.Log("trying to go home");
         }
+        
 
         if(distance_to_home > 1)
         {
@@ -183,5 +205,29 @@ public class scr_oldman_2 : MonoBehaviour
 
 
 
+    }
+
+    private GameObject checkLettuces()
+    {
+        for(int i = 0; i < lettuces.Count; i++)
+        {
+            if (lettuces[i].currentlyCrunched)
+            {
+                return lettuces[i].gameObject;
+            }
+        }
+
+        return null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Lettuce")
+        {
+            if (collision.gameObject.GetComponent<lettuce>().currentlyCrunched)
+            {
+                collision.gameObject.GetComponent<lettuce>().currentlyCrunched = false;
+            }
+        }
     }
 }
