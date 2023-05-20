@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9b609a36ea4ff54f8df1fcd7fe50743
+guid: 366080b9dc59d374ab61cf40771be606
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,11 +42,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.43}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -103,7 +103,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: different_ver_tutel_0
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 84
+        width: 800
+        height: 1110
+      alignment: 9
+      pivot: {x: 0.41788772, y: 0.5109356}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a43c1379f98e21419c6567caaa60751
+      internalID: -195659820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: different_ver_tutel_1
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 77
+        width: 800
+        height: 1110
+      alignment: 9
+      pivot: {x: 0.55579257, y: 0.5130414}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e04a0ecb7bc035499ac72549133cc69
+      internalID: -1532438456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: different_ver_tutel_2
+      rect:
+        serializedVersion: 2
+        x: 2045
+        y: 276
+        width: 642
+        height: 703
+      alignment: 9
+      pivot: {x: 0.5112738, y: 0.54804707}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2443b92c79e3492409a9a7c5732f0aaf
+      internalID: 447907986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +177,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      different_ver_tutel_0: -195659820
+      different_ver_tutel_1: -1532438456
+      different_ver_tutel_2: 447907986
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
