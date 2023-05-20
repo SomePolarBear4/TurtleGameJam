@@ -40,6 +40,13 @@ public class scr_oldman_2 : MonoBehaviour
 
     public AIDestinationSetter destinationSetter;
 
+    public float walk_animation_speed = 0.1f;
+    float walk_animation_counter;
+    public GameObject first_walk_animation;
+    public GameObject second_walk_animation;
+    bool walk_flip = true;
+
+
     void Start()
     {
         oldman_position = Vector2.zero;
@@ -50,6 +57,9 @@ public class scr_oldman_2 : MonoBehaviour
 
         target = turtle;
 
+        walk_animation_counter = walk_animation_speed;
+        first_walk_animation.SetActive(true);
+        second_walk_animation.SetActive(false);
     }
 
     // Update is called once per frame
@@ -146,10 +156,30 @@ public class scr_oldman_2 : MonoBehaviour
             Debug.Log("trying to go home");
         }
 
+        if(distance_to_home > 1)
+        {
+            walk_animation_counter = walk_animation_counter - 1f * Time.deltaTime;
+            //Debug.Log("walk animation counter" + walk_animation_counter);
+            if (walk_animation_counter < 0)
+            {
+                walk_animation_counter = walk_animation_speed;
+                if (walk_flip == false)
+                {
+                    first_walk_animation.SetActive(true);
+                    second_walk_animation.SetActive(false);
+                    walk_flip = true;
+                }
+                else
+                {
+                    first_walk_animation.SetActive(false);
+                    second_walk_animation.SetActive(true);
+                    walk_flip = false;
+                }
+            }   
+        }
 
 
-
-        Debug.Log("cooldown counter" + thougt_cooldown_counter);
+        //Debug.Log("cooldown counter" + thougt_cooldown_counter);
 
 
 
