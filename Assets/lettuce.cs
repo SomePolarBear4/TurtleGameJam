@@ -8,6 +8,7 @@ public class lettuce : MonoBehaviour
     public float lettuceDurability = 100f;
 
     [SerializeField] private List<Sprite> chompStages;
+    [SerializeField] private Sprite regrowStage;
     [SerializeField] private float respawnTimer = 10f;
     [SerializeField] private bool doRespawn = false;
 
@@ -39,23 +40,18 @@ public class lettuce : MonoBehaviour
                 lettuceDurability = 99f;
             }
         }
-        if (lettuceDurability <= 0 && spriteRenderer.enabled == true )
-            spriteRenderer.enabled = false;
-        else if(lettuceDurability > 0 && spriteRenderer.enabled == false)
-        {
-            spriteRenderer.enabled = true;
-            spriteRenderer.sprite = chompStages[chompStages.Count-1];
-        }
-            
-
-        for(int i = 0; i < chompStageNumber; i++)
-        {
-            if (lettuceDurability < (chompStageSize * (i + 1)))
+        if (lettuceDurability <= 0  )
+            spriteRenderer.sprite = regrowStage;
+        else        
+            for(int i = 0; i < chompStageNumber; i++)
             {
-                spriteRenderer.sprite = chompStages[i];
-                break;
+            
+                if (lettuceDurability < (chompStageSize * (i + 1)))
+                {
+                    spriteRenderer.sprite = chompStages[i];
+                    break;
+                }
             }
-        }
         
     }
 

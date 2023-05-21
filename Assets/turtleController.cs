@@ -16,6 +16,15 @@ public class turtleController : MonoBehaviour
     [SerializeField] private float rotationSpeedMax = 360f;
     [SerializeField] private float speedUpRate = 1f;
 
+    [SerializeField] private float uwuDizzyWizzy = 5f;
+    [SerializeField] private float recoveryRate = 1f;
+    [SerializeField] private float timeBeingDizzy = 2f;
+    private float dizzyCtr;
+    private bool dizzy = false;
+    private float dizzyRecCtr = 0f;
+    [SerializeField] private Color dizzyColor;
+
+
     [SerializeField] private float spriteSwitchFrequency = 0.2f;
     [SerializeField] private List<Sprite> sprites;
     private bool walkingSpriteZero = true;
@@ -28,7 +37,7 @@ public class turtleController : MonoBehaviour
     [SerializeField] private float satietyPerChomp = 20f;
     [SerializeField] private float baseSatietyLossRate = 0.5f;
     [SerializeField] private float rotationSatietyLossRate = 2f;
-    [SerializeField] private Slider satietyMeter;
+    [SerializeField] private lettuceSlider satietyMeter;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private GameObject failimage;
 
@@ -54,18 +63,65 @@ public class turtleController : MonoBehaviour
     private GameObject lastChompedLettuce;
     public float alreadyChomped = 0f;
 
+    [SerializeField] private GameObject muncher;
+
+    [SerializeField] private AudioClip munchingSound;
+    private AudioSource audioSource;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         curSpinSpeed = rotationSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        dizzyCtr = uwuDizzyWizzy;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (!win)
         {
+            if (dizzy)
+            {
+                spriteRenderer.color = dizzyColor;
+                dizzyRecCtr += Time.deltaTime;
+                if (dizzyRecCtr > timeBeingDizzy)
+                {
+                    spriteRenderer.color = Color.white;
+                    dizzy = false;
+                    dizzyCtr = uwuDizzyWizzy;
+                    dizzyRecCtr = 0f;
+                }
+            }
+            else
+            {
+                if (turning)
+                {
+                    dizzyCtr -= Time.deltaTime;
+                    if (dizzyCtr <= 0)
+                    {
+                        dizzyCtr = 0;
+                        dizzy = true;
+                        inShell = false;
+                        turning = false;
+                    }
+                }
+                else
+                {
+                    dizzyCtr += Time.deltaTime * recoveryRate;
+                    if (dizzyCtr > uwuDizzyWizzy) dizzyCtr = uwuDizzyWizzy;
+                }
+            }
+            
+
+            
+
+            if (inShell && muncher.activeSelf) muncher.SetActive(false);
+            else if (!inShell && !muncher.activeSelf) muncher.SetActive(true);
+
             if (satiety >= 100) noMoreHungy = true;
             else if(satiety <= 0)
             {
@@ -74,7 +130,7 @@ public class turtleController : MonoBehaviour
             }
             burrowCooldown -= Time.deltaTime;
             if (burrowCooldown < 0f) text.text = "";
-            move();
+            if(!dizzy) move();
 
             if (!correctImage)
             {
@@ -89,7 +145,7 @@ public class turtleController : MonoBehaviour
                 correctImage = true;
             }
 
-            if (!chomping)
+            if (!chomping && !dizzy)
             {
                 if (Input.GetMouseButton(0))
                     turn(false);
@@ -115,18 +171,20 @@ public class turtleController : MonoBehaviour
         }
     }
 
+    public void MunchTrigger(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<lettuce>().lettuceDurability > 0)
+        {
+            chomping = true;
+            chompingTime = chompTimePerUnit * (collision.gameObject.GetComponent<lettuce>().lettuceDurability / 100);
+            lastChompedLettuce = collision.gameObject;
+            audioSource.clip = munchingSound;
+            if(!audioSource.isPlaying) audioSource.Play();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Lettuce")
-        {
-            if(collision.gameObject.GetComponent<lettuce>().lettuceDurability > 0)
-            {
-                chomping = true;
-                chompingTime = chompTimePerUnit * (collision.gameObject.GetComponent<lettuce>().lettuceDurability / 100);
-                lastChompedLettuce = collision.gameObject;
-            }
-        }
-        else if(collision.gameObject.tag == "Burrow")
+        if(collision.gameObject.tag == "Burrow")
         {
             if(burrowCooldown > 0f)
             {

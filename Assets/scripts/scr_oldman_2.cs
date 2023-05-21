@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class scr_oldman_2 : MonoBehaviour
 {
-   
+
     //Old man behavior
     public float vision_radius = 6f;
     public float hearing_range = 8f;
@@ -26,8 +26,8 @@ public class scr_oldman_2 : MonoBehaviour
     bool just_lost_turtle = false;
     bool just_got_home = false;
     bool left_home = true;
-    
-    
+
+
     Vector2 oldman_position;
     Vector2 turtle_position;
     Vector2 home_position;
@@ -51,10 +51,21 @@ public class scr_oldman_2 : MonoBehaviour
     bool walk_flip = true;
 
     private turtleController tutel;
+    private AudioSource audioSource;
 
+    [SerializeField] private List<AudioClip> angrySounds;
+    [SerializeField] private List<AudioClip> confusedSounds;
+    [SerializeField] private List<AudioClip> idleSounds;
+    [SerializeField] private AudioClip placeholder;
+
+    [SerializeField] private float soundFrequency;
+    [SerializeField] [Range(0f, 1f)] private float frequencyRandomness;
+    public float cooldownTimer;
+    public bool makeNoise = true;
     void Start()
     {
         tutel = turtle.GetComponent<turtleController>();
+        audioSource = GetComponent<AudioSource>();
         oldman_position = Vector2.zero;
         turtle_position = Vector2.zero;
         home_position = Vector2.zero;
@@ -66,6 +77,8 @@ public class scr_oldman_2 : MonoBehaviour
         walk_animation_counter = walk_animation_speed;
         first_walk_animation.SetActive(true);
         second_walk_animation.SetActive(false);
+
+        cooldownTimer = coolDown();
     }
 
     // Update is called once per frame
@@ -78,6 +91,23 @@ public class scr_oldman_2 : MonoBehaviour
         home_position = new Vector2(home.transform.position.x, home.transform.position.y);  
 
         distance_to_turtle = Vector2.Distance(turtle_position, oldman_position);
+
+        cooldownTimer -= Time.deltaTime;
+        if (can_see_turtle && (cooldownTimer < 0f))
+        {
+            playSound(0);
+            cooldownTimer = coolDown();
+        }
+        if(!can_see_turtle && left_home && cooldownTimer < 0f)
+        {
+            playSound(1);
+            cooldownTimer = coolDown();
+        }
+        if(!left_home && cooldownTimer < 0f)
+        {
+            playSound(2);
+            cooldownTimer = coolDown();
+        }
 
 
         //Behavior Tree
@@ -97,6 +127,7 @@ public class scr_oldman_2 : MonoBehaviour
             }
             can_see_turtle = false;
         }
+
 
         //emote tree
         if (just_saw_turtle == true)
@@ -155,7 +186,7 @@ public class scr_oldman_2 : MonoBehaviour
         {
             target = turtle;
             destinationSetter.target = turtle.transform;
-            //tmp.GetComponent<lettuce>().currentlyCrunched = false;
+            if(tmp!= null) tmp.GetComponent<lettuce>().currentlyCrunched = false;
             Debug.Log("trying to get turtle");
         }
         else if(tmp != null )
@@ -216,6 +247,40 @@ public class scr_oldman_2 : MonoBehaviour
 
     }
 
+    private float coolDown()
+    {
+        float min, max;
+        min = soundFrequency - (soundFrequency * frequencyRandomness);
+        max = soundFrequency + (soundFrequency * frequencyRandomness);
+
+        float ret = Random.Range(min, max);
+        if (audioSource.clip != null)
+        {
+            ret += audioSource.clip.length;
+        }
+        return ret;
+    }
+
+    private void playSound(int emotion)
+    {
+        AudioClip soundToPlay = placeholder;
+        switch (emotion)
+        {
+            case 0: //Agner
+                if (angrySounds.Count > 0) soundToPlay = angrySounds[Random.Range(0, angrySounds.Count - 1)];
+                break;
+            case 1: //Confuzzlesion
+                if (confusedSounds.Count > 0) soundToPlay = confusedSounds[Random.Range(0, confusedSounds.Count - 1)];
+                break;
+            case 2: //Happers
+                if (idleSounds.Count > 0) soundToPlay = idleSounds[Random.Range(0, idleSounds.Count - 1)];
+                break;
+
+        }
+        audioSource.clip = soundToPlay;
+        if(makeNoise) audioSource.Play();
+
+    }
     private GameObject checkLettuces()
     {
         for(int i = 0; i < lettuces.Count; i++)

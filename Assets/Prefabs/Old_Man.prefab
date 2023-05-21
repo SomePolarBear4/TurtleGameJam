@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 3859993047633493243}
   - component: {fileID: 6620403926550204625}
   - component: {fileID: 730168588}
+  - component: {fileID: 7641720446175281508}
   m_Layer: 0
   m_Name: Old_Man
   m_TagString: Old Man
@@ -579,6 +580,23 @@ MonoBehaviour:
   first_walk_animation: {fileID: 3859993046715811466}
   second_walk_animation: {fileID: 3859993046550743478}
   rocking_chair: {fileID: 2199972022640939508}
+  angrySounds:
+  - {fileID: 8300000, guid: 0c1fbd3765b7ecb40ae4e63a524b7091, type: 3}
+  - {fileID: 8300000, guid: 8ae272fd0c4f166488c7579a9c1e1485, type: 3}
+  - {fileID: 8300000, guid: c6926b9c41644ac4b929b2fa77939b03, type: 3}
+  - {fileID: 8300000, guid: c03f276b56aa19e4cb972ff062879f11, type: 3}
+  - {fileID: 8300000, guid: 2456677bf9cf76241afcb8e0f5229689, type: 3}
+  - {fileID: 8300000, guid: 9b60878279f5eaa4489e47aeaabc7baf, type: 3}
+  - {fileID: 8300000, guid: 30bc9564e39163e40a2a5b4c58eba676, type: 3}
+  - {fileID: 8300000, guid: c37cf3a7230dc564b90930162d2db1ef, type: 3}
+  - {fileID: 8300000, guid: 786b826413f2d674ba6f60df20de69d2, type: 3}
+  - {fileID: 8300000, guid: bd93c41b3142500448824b56d5cc1157, type: 3}
+  - {fileID: 8300000, guid: 3cc9cda23b8725445881b18d2ec71ff3, type: 3}
+  - {fileID: 8300000, guid: 2d1ab8d800e150a4e801171ab58345a6, type: 3}
+  - {fileID: 8300000, guid: 6fb23629228261e42ba99537949c632c, type: 3}
+  confusedSounds: []
+  idleSounds: []
+  placeholder: {fileID: 8300000, guid: 041ee5d65149e0e458ed9ee1368a3754, type: 3}
 --- !u!58 &6620403926550204625
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -616,6 +634,102 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!82 &7641720446175281508
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859993047633493244}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3859993048285150339
 GameObject:
   m_ObjectHideFlags: 0
