@@ -120,6 +120,6 @@ MonoBehaviour:
   - {fileID: -515085227, guid: a612b009778875745a85409ebf63a045, type: 3}
   - {fileID: -1252262712, guid: a612b009778875745a85409ebf63a045, type: 3}
   - {fileID: -1983898214, guid: a612b009778875745a85409ebf63a045, type: 3}
-  respawnTimer: 3
+  respawnTimer: 100
   doRespawn: 1
   currentlyCrunched: 0

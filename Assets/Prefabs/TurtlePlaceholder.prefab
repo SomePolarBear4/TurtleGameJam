@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5201919756166493845}
   - component: {fileID: 3211276096320046538}
   - component: {fileID: 1037058429088485668}
+  - component: {fileID: 462000818949672749}
   m_Layer: 0
   m_Name: TurtlePlaceholder
   m_TagString: Untagged
@@ -124,7 +125,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201919756166493850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -154,3 +155,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &462000818949672749
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201919756166493850}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.051133633, y: 0.122852325}
+  m_Size: {x: 6.0981464, y: 10.416138}
+  m_Direction: 0
