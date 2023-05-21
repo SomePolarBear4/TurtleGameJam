@@ -47,6 +47,7 @@ public class scr_oldman_2 : MonoBehaviour
     float walk_animation_counter;
     public GameObject first_walk_animation;
     public GameObject second_walk_animation;
+    public GameObject rocking_chair;
     bool walk_flip = true;
 
     private turtleController tutel;
@@ -154,7 +155,7 @@ public class scr_oldman_2 : MonoBehaviour
         {
             target = turtle;
             destinationSetter.target = turtle.transform;
-            tmp.GetComponent<lettuce>().currentlyCrunched = false;
+            //tmp.GetComponent<lettuce>().currentlyCrunched = false;
             Debug.Log("trying to get turtle");
         }
         else if(tmp != null )
@@ -178,7 +179,7 @@ public class scr_oldman_2 : MonoBehaviour
         }
         
 
-        if(distance_to_home > 1)
+        if(distance_to_home > 0.2)
         {
             walk_animation_counter = walk_animation_counter - 1f * Time.deltaTime;
             //Debug.Log("walk animation counter" + walk_animation_counter);
@@ -189,15 +190,23 @@ public class scr_oldman_2 : MonoBehaviour
                 {
                     first_walk_animation.SetActive(true);
                     second_walk_animation.SetActive(false);
+                    rocking_chair.SetActive(false);
                     walk_flip = true;
                 }
                 else
                 {
                     first_walk_animation.SetActive(false);
                     second_walk_animation.SetActive(true);
+                    rocking_chair.SetActive(false);
                     walk_flip = false;
                 }
             }   
+        }
+        else
+        {
+            first_walk_animation.SetActive(false);
+            second_walk_animation.SetActive(false);
+            rocking_chair.SetActive(true);
         }
 
 
