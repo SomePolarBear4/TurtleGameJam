@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class turtleController : MonoBehaviour
 {
@@ -81,7 +82,10 @@ public class turtleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("LevelPrototype");
+        }
         if (!win)
         {
             if (dizzy)
