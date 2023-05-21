@@ -4658,6 +4658,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 96ea2d513c0a59a4d9250a9dbf8f4d84, type: 3}
     - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
       propertyPath: idleSounds.Array.data[10]
       value: 
       objectReference: {fileID: 8300000, guid: 6afb12890ec15db41976e1918db3a567, type: 3}
@@ -4669,6 +4673,58 @@ PrefabInstance:
       propertyPath: idleSounds.Array.data[12]
       value: 
       objectReference: {fileID: 8300000, guid: 6a58d5ea5ecd095479ab076fe9594a1d, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 91eeb169fb4797643967a3a1b519c4ed, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f79364e01a432d045bcb24b5a15200d3, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 06c1b6c227b6a0347a61e3ac8b9318b8, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 21fc099fc0b4a184ea495bd6dd96647b, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c6dc128ef14d71409746261fd9cb989, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec11def0081152549ba5f4f1e25b84de, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: f6ff879db05d0f34186080272e4d09b4, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e9ef2503699f29498a0c1b98fdd35ff, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: d8bccadc69c04ab4fa5e25c948d50f51, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cef38b4ee3649a40a38c9cee2b1e135, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: ae023df4fc18adf43a4c2da68a9519a2, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9cc2706e778f9ba4987b3e545725c0b9, type: 3}
+    - target: {fileID: 3859993047633493243, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
+      propertyPath: confusedSounds.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b714d3e7ff3cbd48a414094e66cab15, type: 3}
     - target: {fileID: 3859993047633493244, guid: b26cd763548a4b544bd9cae832d1bf31, type: 3}
       propertyPath: m_Name
       value: Old_Man
